@@ -10,24 +10,24 @@ export class TasksService {
 
   constructor(@InjectModel(Task.name) private taskModel: Model<TaskDocument>) {}
 
-  create(createTaskDto: CreateTaskDto) {
-    const task = new this.taskModel(createTaskDto)
+  create(userId: string, createTaskDto: CreateTaskDto) {
+    const task = new this.taskModel({ ...createTaskDto, userId });
     return task.save();
   }
 
-  findAll() {
-    return this.taskModel.find().exec();
+  findAll(userId: string) {
+    return this.taskModel.find({ userId }).exec();
   }
 
-  findOne(id: string) {
-    return this.taskModel.findById(id).exec();
+  findOne(userId: string, id: string) {
+    return this.taskModel.findOne({ _id: id, userId }).exec();
   }
 
-  update(id: string, updateTaskDto: UpdateTaskDto) {
-    return this.taskModel.findByIdAndUpdate(id, updateTaskDto, {new: true}).exec();
+  update(userId: string, id: string, updateTaskDto: UpdateTaskDto) {
+    return this.taskModel.findOneAndUpdate({ _id: id, userId }, updateTaskDto, {new: false}).exec();
   }
 
-  remove(id: string) {
-    return this.taskModel.findByIdAndRemove(id).exec();
+  remove(userId: string, id: string) {
+    return this.taskModel.findOneAndRemove({ _id: id, userId }).exec();
   }
 }
