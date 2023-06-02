@@ -1,20 +1,22 @@
 import React, { useEffect, useState } from "react";
-import { getAllTasks } from "../../serives/api";
+import { finishTask, getAllTasks } from "../../serives/api";
 import Task from "./Task";
 import { TaskDto } from "../../dto/task.dto";
 import { Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const TasksList = () => {
 
-    const [tasks, setTasks] = useState([]);
+    const navigate = useNavigate();
+
+    const [tasks, setTasks] = useState([] as TaskDto[]);
 
     useEffect(() => {
         const fetchData = async () => {
             try {
                 const response = await getAllTasks();
                 if (response.status === 200) {
-                    setTasks(response.data);
+                    setTasks(response.data.sort((task1: TaskDto) => task1.completed ? 1 : -1));
                 } else {
                     alert("Error fetching data")
                 }
@@ -26,10 +28,24 @@ const TasksList = () => {
     }, []);
 
     const completeTask = (id: string) => {
-        // const updatedTodos = tasks.map(task =>
-        //     task.id === id ? { ...task, completed: true } : task
-        // );
-        // setTasks(updatedTodos);
+
+        finishTask(id).then((response) => {
+            const status = response.status;
+            if (status === 200) {
+                const updatedTasks: TaskDto[] = tasks.map((task: TaskDto) =>
+                    task.id === id ? { ...task, completed: true } : task
+                ).sort((task1: TaskDto) => task1.completed ? 1 : -1);
+
+                setTasks(updatedTasks);
+            } else {
+                alert("Error");
+                navigate('/');
+            }
+        }).catch((error) => {
+            alert(error.message);
+        });
+
+
     };
 
     const deleteTask = (id: string) => {

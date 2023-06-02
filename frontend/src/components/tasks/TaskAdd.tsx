@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { createTask } from "../../serives/api";
 import { Button, Col, Container, Form, FormGroup, FormLabel, Row } from "react-bootstrap";
+import { TaskDto } from "../../dto/task.dto";
 
 const TaskAdd = () => {
     const [title, setTitle] = useState('');
@@ -16,7 +17,7 @@ const TaskAdd = () => {
         const taskData = {
             title,
             description,
-        };
+        } as TaskDto;
 
         createTask(taskData).then((response) => {
 

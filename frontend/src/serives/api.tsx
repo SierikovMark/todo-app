@@ -50,6 +50,14 @@ export const updateTask = async (taskDto: TaskDto) => {
     }
 };
 
+export const finishTask = async (id: string) => {
+    try {
+        return await api.patch(`/tasks/${id}`, { completed: true }, buildHeaders());
+    } catch (error: any) {
+        throw new Error(error.response.data.message);
+    }
+};
+
 function buildHeaders(): {} {
     const accessToken = localStorage.getItem('user-token') || '';
     return {
