@@ -24,7 +24,7 @@ To get started with the project, follow these steps:
 The project can be configured using environment variables. Create a .env file in the respective backend and frontend directories and specify the required variables. Refer to the .env.example files for the list of variables.  
 Please specify env variables which doesn't have default values 
 ```
-MONGO_URI = <mongo uri | default - mongodb://localhost:21017>
+MONGO_URI = <mongo uri | default - mongodb://localhost:27017>
 MONGO_AUTH_SOURCE = <mongo auth database | default - admin>
 MONGO_TODO_LIST_DB = <database name | default todo-list-app>
 MONGO_USERNAME = <mongo database username>
@@ -51,6 +51,15 @@ The React app will be available at http://localhost:3001
 Navigate to root folder of monorepo
 Run: `npm start`  
 Both applications will be available at http://localhost:3000
+
+### FE + BE + MongoDB with docker-compose
+Navigate to root folder of monorepo  
+Run: `docker-compose up`  
+The Nest.js API will be available at http://localhost:3000  
+The React app will be available at http://localhost  
+The MongoDB will be available at [localhost:27017](localhost:27017) (no auth)
+
+Or if you use WebStorm you can just go to the docker-compose file in the root directory of the project and run it right from IDE
 
 ## Production
 To build and run the project in production mode, use the following commands:

@@ -1,0 +1,20 @@
+# Base image suitable for backend project (e.g., Node.js)
+FROM node:16.19.1-alpine3.17
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Copy the package.json and package-lock.json (or yarn.lock) files
+COPY package*.json ./
+
+# Install dependencies
+RUN npm install
+
+# Copy the rest of the backend project files
+COPY . .
+
+# Expose the necessary port (e.g., 3000)
+EXPOSE 3000
+
+# Set the command to start backend server
+CMD ["npm", "start"]
