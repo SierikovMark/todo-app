@@ -18,7 +18,7 @@ export class UsersService {
       throw new BadRequestException('User already exists');
     }
     const hashedPassword = await bcrypt.hash(password, NUMBER_OF_ROUNDS_OR_SALT);
-    return this.userModel.create({ username, password: hashedPassword });
+    return this.userModel.create({ username, password: hashedPassword, createdAt: new Date() });
   }
 
   async findOne(id: string) {

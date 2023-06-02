@@ -11,7 +11,13 @@ export class TasksService {
   constructor(@InjectModel(Task.name) private taskModel: Model<TaskDocument>) {}
 
   create(userId: string, createTaskDto: CreateTaskDto) {
-    const task = new this.taskModel({ ...createTaskDto, userId });
+    const date = new Date();
+    const task = new this.taskModel({
+      ...createTaskDto,
+      userId,
+      createdAt: date,
+      updatedAt: date
+    });
     return task.save();
   }
 
@@ -28,8 +34,13 @@ export class TasksService {
 
   async update(userId: string, id: string, updateTaskDto: UpdateTaskDto) {
     this.verifyId(id);
-    const updatedTask = await this.taskModel
-        .findOneAndUpdate({ _id: id, userId }, updateTaskDto, {new: false}).exec();
+
+    const updatedTask = await this.taskModel.findOneAndUpdate(
+        { _id: id, userId },
+        { ...updateTaskDto, updatedAt: new Date() },
+        { new: false })
+        .exec();
+
     this.verifyTaskIsNotNull(updatedTask, id);
     return updatedTask;
   }

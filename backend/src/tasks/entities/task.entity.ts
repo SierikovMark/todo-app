@@ -5,7 +5,7 @@ export type TaskDocument = Task & Document;
 
 @Schema()
 export class Task {
-    @Prop()
+    @Prop({ required: true  })
     title: string;
 
     @Prop()
@@ -16,6 +16,12 @@ export class Task {
 
     @Prop({ required: true  })
     userId: string;
+
+    @Prop({ required: true  })
+    createdAt: Date
+
+    @Prop({ required: true  })
+    updatedAt: Date
 }
 
 export const TaskSchema = SchemaFactory.createForClass(Task);
