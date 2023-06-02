@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { finishTask, getAllTasks } from "../../serives/api";
+import { finishTask, getAllTasks, removeTask } from "../../serives/api";
 import Task from "./Task";
 import { TaskDto } from "../../dto/task.dto";
 import { Button } from "react-bootstrap";
@@ -28,7 +28,6 @@ const TasksList = () => {
     }, []);
 
     const completeTask = (id: string) => {
-
         finishTask(id).then((response) => {
             const status = response.status;
             if (status === 200) {
@@ -44,13 +43,21 @@ const TasksList = () => {
         }).catch((error) => {
             alert(error.message);
         });
-
-
     };
 
     const deleteTask = (id: string) => {
-        // const updatedTodos = tasks.filter(task => task.id !== id);
-        // setTasks(updatedTodos);
+        removeTask(id).then((response) => {
+            const status = response.status;
+            if (status === 200) {
+                const updatedTasks = tasks.filter((task: TaskDto) => task.id !== id);
+                setTasks(updatedTasks);
+            } else {
+                alert("Error");
+                navigate('/');
+            }
+        }).catch((error) => {
+            alert(error.message);
+        });
     };
 
     return (
