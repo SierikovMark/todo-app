@@ -72,13 +72,13 @@ const TaskEdit = () => {
                                     name="description" required />
                             </FormGroup>
                             <FormGroup className="mb-3">
-                                <FormLabel htmlFor={'task-completed'}>Description</FormLabel>
+                                <FormLabel htmlFor={'task-completed'}>Completed</FormLabel>
                                 <input
                                     type={'checkbox'}
-                                    className="form-control"
+                                    className="form-check"
                                     id={'task-completed'}
                                     checked={completed}
-                                    onChange={(e) => setCompleted(e.target.value === 'true')}
+                                    onChange={() => setCompleted(!completed)}
                                     name="completed" />
                             </FormGroup>
                             <Button type="submit" className="btn-success mt-2" id="add-task-btn">Update</Button>
