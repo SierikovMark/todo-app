@@ -3,13 +3,34 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Auth from "./components/auth/Auth";
+import Login from "./components/auth/Login";
+import ProtectedRoute from "./components/utils/ProtectedRoute";
+import Tasks from "./components/tasks/Tasks";
+import PageNotFound from "./components/error/PageNotFound";
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <App />
+      <BrowserRouter basename={'/'}>
+          <Routes>
+              <Route path='/auth' element={<Auth />}>
+                  <Route path='login' element={<Login />} />
+              </Route>
+              <Route path="/" element={<App />}>
+                  <Route path='' element={
+                      <ProtectedRoute>
+                          <Tasks />
+                      </ProtectedRoute>
+                  } />
+              </Route>
+              <Route path="*" element={<PageNotFound />} />
+          </Routes>
+      </BrowserRouter>
   </React.StrictMode>
 );
 

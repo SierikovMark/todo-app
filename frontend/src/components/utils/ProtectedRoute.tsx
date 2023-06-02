@@ -1,25 +1,28 @@
-import React, { useEffect, useState } from 'react';
-import './App.css';
-import { Outlet } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-function App() {
+const ProtectedRoute = (props: any) => {
+    const navigate = useNavigate();
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const checkUserToken = () => {
         const userToken = localStorage.getItem('user-token');
         if (!userToken || userToken === 'undefined') {
             setIsLoggedIn(false);
+            return navigate('/auth/login');
         }
         setIsLoggedIn(true);
     }
     useEffect(() => {
         checkUserToken();
-    }, [isLoggedIn]);
 
+    }, [isLoggedIn]);
     return (
         <React.Fragment>
-            <Outlet />
+            {
+                isLoggedIn ? props.children : null
+            }
         </React.Fragment>
     );
 }
 
-export default App;
+export default ProtectedRoute;
