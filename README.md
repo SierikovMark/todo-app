@@ -9,7 +9,6 @@ This repository contains a monorepo setup for developing a TODO list full-stack 
 - Frontend UI built with React
 - Shared code and dependencies between the backend and frontend
 - Easier development and deployment with a monorepo structure
-...
 
 ## Installation
 To get started with the project, follow these steps:
