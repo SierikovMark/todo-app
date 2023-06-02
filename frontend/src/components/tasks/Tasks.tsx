@@ -1,9 +1,15 @@
-const Tasks = () => {
+import React from "react";
+import { Outlet } from "react-router-dom";
+import TasksFooter from "./TasksFooter";
+import TasksNavbar from "./TasksNavbar";
 
+const Tasks = () => {
     return (
-        <div>
-            <h1>Tasks</h1>
-        </div>
+        <React.Fragment>
+            <TasksNavbar />
+            <Outlet />
+            <TasksFooter />
+        </React.Fragment>
     );
 }
 

@@ -17,6 +17,7 @@ const RegistrationForm = () => {
             }
             localStorage.clear();
             localStorage.setItem('user-token', token);
+            localStorage.setItem('user-name', username);
             setTimeout(() => {
                 navigate('/');
             }, 500);

@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { TaskDto } from "../dto/task.dto";
 
 const BASE_URL = 'http://localhost:3000';
 
@@ -23,3 +24,37 @@ export const login = async (userData: any) => {
         throw new Error(error.response.data.message);
     }
 };
+
+
+export const getAllTasks = async () => {
+    try {
+        return  await api.get('/tasks', buildHeaders());
+    } catch (error: any) {
+        throw new Error(error.response.data.message);
+    }
+};
+
+export const createTask = async (taskDto: TaskDto) => {
+    try {
+        return await api.post('/tasks', taskDto, buildHeaders());
+    } catch (error: any) {
+        throw new Error(error.response.data.message);
+    }
+};
+
+export const updateTask = async (taskDto: TaskDto) => {
+    try {
+        return await api.patch(`/tasks/${taskDto.id}`, taskDto, buildHeaders());
+    } catch (error: any) {
+        throw new Error(error.response.data.message);
+    }
+};
+
+function buildHeaders(): {} {
+    const accessToken = localStorage.getItem('user-token') || '';
+    return {
+        headers: {
+            'Authorization': `Bearer ${accessToken}`
+        }
+    }
+}
