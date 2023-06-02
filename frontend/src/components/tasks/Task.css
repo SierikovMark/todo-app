@@ -1,0 +1,53 @@
+.task-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.task-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.task-list {
+    list-style-type: none;
+    padding: 0;
+    margin-top: 10px;
+}
+
+.task-item {
+    height: 50px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f5f5f5;
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.task-item input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+.task-item label {
+    padding: 5px;
+    flex-grow: 1;
+    margin: 0;
+    word-break: break-all;
+}
+
+.task-item .description {
+    padding: 5px;
+    flex-grow: 1;
+    margin: 0;
+    word-break: break-all;
+
+}
+
+.task-item .delete-btn, .task-item .edit-btn, .task-item .complete-btn {
+    cursor: pointer;
+    margin-right: 5px;
+    margin-left: 5px;
+}

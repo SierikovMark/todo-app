@@ -50,9 +50,9 @@ export const updateTask = async (taskDto: TaskDto) => {
     }
 };
 
-export const finishTask = async (id: string) => {
+export const handleFinishTask = async (taskDto: TaskDto) => {
     try {
-        return await api.patch(`/tasks/${id}`, { completed: true }, buildHeaders());
+        return await api.patch(`/tasks/${taskDto.id}`, { completed: !taskDto.completed }, buildHeaders());
     } catch (error: any) {
         throw new Error(error.response.data.message);
     }

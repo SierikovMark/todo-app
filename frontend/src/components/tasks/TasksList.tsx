@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { finishTask, getAllTasks, removeTask } from "../../serives/api";
+import { handleFinishTask, getAllTasks, removeTask } from "../../serives/api";
 import Task from "./Task";
 import { TaskDto } from "../../dto/task.dto";
 import { Button } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
+import './Task.css';
 
 const TasksList = () => {
 
@@ -27,12 +28,13 @@ const TasksList = () => {
         fetchData();
     }, []);
 
-    const completeTask = (id: string) => {
-        finishTask(id).then((response) => {
+    const handleCompleteTask = (id: string) => {
+        const taskDto = tasks.find((task) => task.id === id) as TaskDto;
+        handleFinishTask(taskDto).then((response) => {
             const status = response.status;
             if (status === 200) {
                 const updatedTasks: TaskDto[] = tasks.map((task: TaskDto) =>
-                    task.id === id ? { ...task, completed: true } : task
+                    task.id === id ? { ...task, completed: !task.completed } : task
                 ).sort((task1: TaskDto) => task1.completed ? 1 : -1);
 
                 setTasks(updatedTasks);
@@ -61,17 +63,18 @@ const TasksList = () => {
     };
 
     return (
-        <div className="container">
+        <div className="container task-container">
+            <h1 className="task-header">Todo List</h1>
+
             <Link to={'/tasks/add'}>
                 <Button className={'btn-success mt-2'}>Add new Task</Button>
             </Link>
-            <div>
+            <ul className="task-list">
                 {
                     tasks.map((task: TaskDto) => (
-                        <Task task={task} completeTask={completeTask} deleteTask={deleteTask} />
+                        <Task task={task} completeTask={handleCompleteTask} deleteTask={deleteTask} />
                     ))}
-            </div>
-
+            </ul>
         </div>
     )
 }

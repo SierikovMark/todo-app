@@ -1,26 +1,27 @@
 import React from 'react';
 import { useNavigate } from "react-router-dom";
+import './Task.css';
 
-const Task = ({ task, completeTask, deleteTask }: any) => {
+const Task = ({task, completeTask: handleCompleteTask, deleteTask}: any) => {
     const navigate = useNavigate();
 
     const editTask = () => {
-        navigate('/tasks/edit', {state: { taskDto: task }})
+        navigate('/tasks/edit', {state: {taskDto: task}})
     };
 
     return (
-        <div
-            className="task"
-            style={{textDecoration: task.completed ? 'line-through' : ''}}
-        >
-            {task.title}
-            {task.description}
+        <li className="task-item" style={{textDecoration: task.completed ? 'line-through' : ''}}>
+            <label>
+                {task.title}
+            </label>
             <div>
-                <button onClick={() => completeTask(task.id)}>Complete</button>
-                <button onClick={() => editTask()}>Edit</button>
-                <button onClick={() => deleteTask(task.id)}>Delete</button>
+                {task.description}
             </div>
-        </div>
+            <button className={'delete-btn btn btn-primary'} onClick={() => handleCompleteTask(task.id)}>{task.completed ? 'Undone': 'Complete'}</button>
+            <button className={'edit-btn btn btn-warning'} onClick={() => editTask()}>Edit</button>
+            <button className={'delete-btn btn btn-danger'} onClick={() => deleteTask(task.id)}>Delete</button>
+        </li>
+
     );
 }
 
