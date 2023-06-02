@@ -13,6 +13,7 @@ import Registration from "./components/registration/Registration";
 import RegistrationForm from "./components/registration/RegistrationForm";
 import TasksList from "./components/tasks/TasksList";
 import TaskEdit from "./components/tasks/TaskEdit";
+import TaskAdd from "./components/tasks/TaskAdd";
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -38,6 +39,11 @@ root.render(
                   <Route path='edit' element={
                       <ProtectedRoute>
                           <TaskEdit />
+                      </ProtectedRoute>
+                  } />
+                  <Route path='add' element={
+                      <ProtectedRoute>
+                          <TaskAdd />
                       </ProtectedRoute>
                   } />
               </Route>

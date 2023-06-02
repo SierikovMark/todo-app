@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { getAllTasks } from "../../serives/api";
 import Task from "./Task";
 import { TaskDto } from "../../dto/task.dto";
+import { Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 const TasksList = () => {
 
@@ -37,10 +39,16 @@ const TasksList = () => {
 
     return (
         <div className="container">
-            {
-                tasks.map((task: TaskDto) => (
-                    <Task task={task} completeTask={completeTask} deleteTask={deleteTask} />
-            ))}
+            <Link to={'/tasks/add'}>
+                <Button className={'btn-success mt-2'}>Add new Task</Button>
+            </Link>
+            <div>
+                {
+                    tasks.map((task: TaskDto) => (
+                        <Task task={task} completeTask={completeTask} deleteTask={deleteTask} />
+                    ))}
+            </div>
+
         </div>
     )
 }
