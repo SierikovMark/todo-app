@@ -47,6 +47,11 @@ Navigate to the frontend directory: `cd frontend`
 Start the development server: `npm start`  
 The React app will be available at http://localhost:3001
 
+### FE + BE
+Navigate to root folder of monorepo
+Run: `npm start`  
+Both applications will be available at http://localhost:3000
+
 ## Production
 To build and run the project in production mode, use the following commands:
 
