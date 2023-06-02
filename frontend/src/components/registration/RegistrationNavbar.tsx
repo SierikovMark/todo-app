@@ -4,14 +4,14 @@ import Navbar from 'react-bootstrap/Navbar';
 import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-const AuthNavbar = () => {
+const RegistrationNavbar = () => {
     return (
         <React.Fragment>
             <Navbar bg="dark" expand="lg" className="navbar-dark">
                 <Container>
                     <Navbar.Brand>Todo Tasks application</Navbar.Brand>
-                    <Link to='/registration'>
-                        <Button>Sign Up</Button>
+                    <Link to='/auth/login'>
+                        <Button>Login Page</Button>
                     </Link>
                 </Container>
             </Navbar>
@@ -19,4 +19,4 @@ const AuthNavbar = () => {
     );
 }
 
-export default AuthNavbar;
+export default RegistrationNavbar;

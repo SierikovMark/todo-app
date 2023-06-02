@@ -10,6 +10,8 @@ import Login from "./components/auth/Login";
 import ProtectedRoute from "./components/utils/ProtectedRoute";
 import Tasks from "./components/tasks/Tasks";
 import PageNotFound from "./components/error/PageNotFound";
+import Registration from "./components/registration/Registration";
+import RegistrationForm from "./components/registration/RegistrationForm";
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -20,6 +22,9 @@ root.render(
           <Routes>
               <Route path='/auth' element={<Auth />}>
                   <Route path='login' element={<Login />} />
+              </Route>
+              <Route path='/registration' element={<Registration />}>
+                  <Route path='' element={<RegistrationForm />} />
               </Route>
               <Route path="/" element={<App />}>
                   <Route path='' element={
