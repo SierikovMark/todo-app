@@ -83,6 +83,7 @@ Contributions are welcome! If you find any issues or have suggestions for improv
 - Encryption of JWT token
 - Configuration for different environments
 - Metrics collection
+- Add tests (Unit/Service)
 - Add more "data typing" stuff on both BE and FE part
 - CI/CD integration
 - Token refresh mechanism
