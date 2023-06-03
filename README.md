@@ -78,6 +78,14 @@ The React app will be available at http://localhost:3001
 ## Contributing
 Contributions are welcome! If you find any issues or have suggestions for improvements, please open an issue or submit a pull request. Please follow the existing code style and commit message conventions.
 
+## Possible improvements
+- Logging on backend side
+- Encryption of JWT token
+- configuration for different environments
+- CI/CD integration
+- Token refresh mechanism
+- UI/UX is a huge area for improvement
+
 ## License
 This project is licensed under the MIT License.
 
