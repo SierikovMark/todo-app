@@ -82,6 +82,7 @@ Contributions are welcome! If you find any issues or have suggestions for improv
 - Logging on backend side
 - Encryption of JWT token
 - Configuration for different environments
+- Metrics collection
 - Add more "data typing" stuff on both BE and FE part
 - CI/CD integration
 - Token refresh mechanism
