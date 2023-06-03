@@ -81,7 +81,8 @@ Contributions are welcome! If you find any issues or have suggestions for improv
 ## Possible improvements
 - Logging on backend side
 - Encryption of JWT token
-- configuration for different environments
+- Configuration for different environments
+- Add more "data typing" stuff on both BE and FE part
 - CI/CD integration
 - Token refresh mechanism
 - UI/UX is a huge area for improvement
